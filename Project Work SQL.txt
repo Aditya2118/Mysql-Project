@@ -1,0 +1,90 @@
+Project Work
+Aditya Sharma
+
+CREATE DATABASE Case_studies;
+USE Case_studies;
+
+-- 1. Create a table called "Employees" with the following columns:
+CREATE TABLE employees(
+Employee_id INT PRIMARY KEY,
+First_name VARCHAR (50),
+Last_name VARCHAR(50),
+Department VARCHAR(100),
+Hire_Date DATE
+);
+
+-- 2. Insert at least five records into the "Employees" table with different employee details
+INSERT INTO employees VALUES
+(118,'Aditya','Sharma','Data Science','2023-01-05'),
+(121,'Kritika','Maru','Finance','2023-04-19'),
+(111,'Keshav','Agrawal','Junior analyst','2023-01-31'),
+(101,'Vivekanand','Sharma','DSA','2023-03-07'),
+(102,'Sumeet','Sharma','Animation','2023-02-12');
+
+-- Q3. Write a SQL query to retrieve all the employees from the "Employees" table.
+SELECT * FROM employees;
+
+-- Q4. Write a SQL query to retrieve employees hired after a specific date.
+SELECT * FROM employees
+WHERE Hire_date > '2023-01-01';
+
+-- Q5. Write a SQL query to update the department of an employee with a EmployeeID 4.
+UPDATE employees SET Department = 'Senior Data Science Analyst'
+WHERE Employee_id = 118;
+
+-- te a table called "Products" with the following columns:
+CREATE TABLE products(
+Product_id INT PRIMARY KEY,
+Product_name VARCHAR(100),
+Price DECIMAL(10,2),
+Quantity INT
+);
+
+-- Q7. Insert at least five records into the "Products" table with different product details.
+INSERT INTO products VALUES
+(021,'LED','150000.88',01),
+(018,'Set-up box','550.69',01),
+(019,'Broad band','1700.33',02),
+(005,'CCTV Camera','850.99',03),
+(211,'Chair','250.69',06);
+
+-- Q8. Write a SQL query to retrieve all products with a price greater than a specific value.
+SELECT * FROM Products
+WHERE Price > 600;
+
+-- Q9. Write a SQL query to update the quantity in stock of a product with a given ProductID.
+UPDATE products SET Quantity = 03
+WHERE Product_id = 021;
+
+-- Q10. Write a SQL query to calculate the total value (price * quantity in stock) of each product and retrieve the results.
+SELECT Product_id, Product_name,
+SUM(Price * Quantity) AS total_value
+FROM Products
+GROUP BY Product_id, Product_name;
+
+-- Q11. Create a table called "Orders" with the following columns:
+CREATE TABLE orders(
+Order_id INT ,
+Order_date DATE,
+Customer_id INT UNIQUE PRIMARY KEY,
+CONSTRAINT Customer
+FOREIGN KEY(Customer_id)
+REFERENCES orders(Customer_id)
+);
+DESC orders;
+
+-- Q12. Insert at least five records into the "Orders" table with different order details.
+INSERT INTO orders VALUES
+(021,'2023-01-01',121),
+(018,'2024-04-019',118),
+(211,'2023-05-12',021),
+(019,'2023-02-06',119),
+(005,'2024-01-01',105);
+
+-- Q13. Write a SQL query to retrieve all orders placed by a specific customer with a given CustomerID 3.
+SELECT * FROM orders
+WHERE Customer_id=021;
+
+-- Q14. Write a SQL query to retrieve all employees who have not been assigned any department.
+SELECT * FROM Employees
+WHERE Department IS NULL;
